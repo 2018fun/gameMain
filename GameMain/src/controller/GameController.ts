@@ -6,11 +6,14 @@ class GameController {
         this.init();
     }
 
-    private areaDataMaster:AreaDataMaster;
+    private areaDataMaster: AreaDataMaster;
 
 
     init() {
-        this.areaDataMaster = new AreaDataMaster();
+
+        this.loadConfig();
+        this.loadSave();
+        // this.areaDataMaster = new AreaDataMaster();
     }
 
     public static getInstance(): GameController {
@@ -18,5 +21,19 @@ class GameController {
             this.instance = new GameController();
         }
         return this.instance;
+    }
+
+    /**
+     * cdn 加载
+     */
+    private async loadConfig() {
+        await RES.loadConfig("resource/config.res.json", "resource/");
+    }
+
+    /**
+     * 
+     */
+    private async loadSave() {
+        LocalSaveData.getInstance();
     }
 }

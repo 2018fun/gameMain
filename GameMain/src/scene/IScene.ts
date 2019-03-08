@@ -1,4 +1,6 @@
 interface IScene {
+    readonly index: number;
+
     //--------------
     //シーンをスタートする時に呼ばれる
     //--------------

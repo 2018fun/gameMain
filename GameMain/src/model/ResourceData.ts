@@ -1,21 +1,21 @@
 /**
- * NPC数据
+ * 资源数据
  */
 
-class NpcData {
+class ResourceData {
     constructor(data) {
         this._name = data.name;
-        this._race = data.race;
+        this._index = data._index;
     }
 
     private _name: string;
-    private _race: number;
+    private _index: number;
 
     get name() {
         return this._name;
     }
 
-    get race() {
-        return this._race;
+    get index() {
+        return this._index;
     }
 }

@@ -5,13 +5,30 @@ class SceneManager {
 
     private loading: LoadingUI;
 
-    private gameLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+    /**
+     * 最上层
+     */
     private loadingLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
-    private uiLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
-    private popLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+
+    /**
+     * 漂浮
+     */
     private tipLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
 
-    private popSheet: egret.SpriteSheet;
+    private guideLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+
+    private maskLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+
+    /**
+     * 弹窗层
+     */
+    private popLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+
+
+    private sceneLayer: egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+
+
+
 
     private currentPop: GameScene;
     private clearPop: GameScene;
@@ -28,8 +45,11 @@ class SceneManager {
 
     private gameScene: GameScene = null;
     private titleScene: TitleScene = null;
-    private dataScene: GameScene = null;
-    private rankScene: GameScene = null;
+    private charScene: CharScene = null;
+    private cityScene: CityScene = null;
+    private itemScene: ItemScene = null;
+
+    private sceneList = [this.titleScene, this.gameScene, this.charScene, this.cityScene, this.itemScene]
 
     private itemFullTip: egret.TextField;
 
@@ -48,8 +68,8 @@ class SceneManager {
         this.egretStage = egretStage;
         this.loading = new LoadingUI();
         // this.loading.y = -Util.y_fix() + 150;
-        this.initLayer(this.gameLayer);
-        this.initLayer(this.uiLayer);
+        // this.initLayer(this.gameLayer);
+        this.initLayer(this.sceneLayer);
         this.egretStage.addChild(this.popLayer);
         this.egretStage.addChild(this.tipLayer);
         this.egretStage.addChild(this.loadingLayer);
@@ -64,10 +84,6 @@ class SceneManager {
         }
     }
 
-    public setSheet(): void {
-        this.popSheet = RES.getRes("pops_sheet");
-    }
-
     public static getInstance(): SceneManager {
         if (this.instance === null) {
             this.instance = new SceneManager();
@@ -75,18 +91,22 @@ class SceneManager {
         return this.instance;
     }
 
+    /**
+     * 初始化层级 调整适配 
+     * @param layer 
+     */
     private initLayer(layer) {
         layer.x = (Util.curWidth() - Util.displayWidth()) / 2;
         layer.y = (Util.curHeight() - Util.displayHeight()) / 2;
         this.egretStage.addChild(layer);
     }
 
-    public getGameLayer(): egret.DisplayObjectContainer {
-        return this.gameLayer;
-    }
+    // public getGameLayer(): egret.DisplayObjectContainer {
+    //     return this.gameLayer;
+    // }
 
-    public getUILayer(): egret.DisplayObjectContainer {
-        return this.uiLayer;
+    public getSceneLayer(): egret.DisplayObjectContainer {
+        return this.sceneLayer;
     }
 
     public getLoadingLayer(): egret.DisplayObjectContainer {
@@ -113,95 +133,29 @@ class SceneManager {
     //     return this.currentStage;
     // }
 
-    async toRankScene() {
-        this.showLoading();
-        await RES.loadGroup("data_scene");
-        await RES.loadGroup("game_scene");
-        if (this.currentScene !== null) {
-            if (this.currentScene.parent === this.gameLayer) {
-                this.gameLayer.removeChild(this.currentScene);
-            }
-            if (this.currentScene !== this.rankScene) {
-                this.uiLayer.removeChildren();
-            }
-            // this.gameScene = null;
-            // this.dataScene = null;
-            this.currentScene = null;
+    toScene(index: number) {
+        if (index < 0 || index >= this.sceneList.length) {
+            console.log("scene error")
+            return;
         }
-        if (this.rankScene === null) {
-            // this.rankScene = new RankScene(this.egretStage)
-        }
-        this.currentScene = this.rankScene;
-        this.gameLayer.addChild(this.currentScene);
-        this.hideLoading(false);
-    }
-
-    public toTitleScene(): void {
         this.showLoading();
         if (this.currentScene !== null) {
-            // if (this.currentScene.parent === this.gameLayer) {
-            //     this.gameLayer.removeChild(this.currentScene);
-            // }
-            this.gameLayer.removeChildren();
-            if (this.currentScene !== this.titleScene) {
-                this.uiLayer.removeChildren();
+            if (this.currentScene.index !== index) {
+                this.sceneLayer.removeChildren();
+                this.currentScene = null;
             }
-            // this.gameScene = null;
-            // this.dataScene = null;
         }
-        if (this.titleScene === null) {
-            // this.titleScene = new TitleScene(this.egretStage)
-        }
-        this.currentScene = this.titleScene;
-        this.gameLayer.addChild(this.currentScene);
-        this.hideLoading(false);
-    }
-
-    async toGameScene() {
-        this.showLoading();
-        await RES.loadGroup("game_scene");
-        await RES.loadGroup("tip");
-        if (this.currentScene !== null) {
-            // if (this.currentScene.parent === this.gameLayer) {
-            //     this.gameLayer.removeChild(this.currentScene);
-            // }
-            if (this.currentScene !== this.gameScene) {
-                this.gameLayer.removeChildren();
-                this.uiLayer.removeChildren();
+        if (this.sceneList[index] === null) {
+            switch (index) {
+                case 0:
+                    this.sceneList[index] = new TitleScene();
+                    break;
             }
-            // this.titleScene = null;
-            // this.dataScene = null;
         }
-        // this.gameScene = await new GameScene(this.egretStage);
-        this.currentScene = this.gameScene;
-        this.currentScene.setGameStage();
-        this.gameLayer.addChild(this.currentScene);
-    }
-
-    async toDataScene() {
-        this.showLoading();
-        await RES.loadGroup("data_scene");
-        await RES.loadGroup("game_scene");
-        if (this.currentScene !== null) {
-            // if (this.currentScene.parent === this.gameLayer) {
-            //     this.gameLayer.removeChild(this.currentScene);
-            // }
-            this.gameLayer.removeChildren();
-            if (this.currentScene !== this.dataScene) {
-                this.uiLayer.removeChildren();
-            }
-            // this.gameScene = null;
-            // this.titleScene = null;
-            this.currentScene = null;
-        }
-        if (this.dataScene === null) {
-            // this.dataScene = new DataScene(this.egretStage);
-        }
-        this.currentScene = null;
-        // this.dataScene.setGameStage();
-        this.currentScene = this.dataScene;
-        this.gameLayer.addChild(this.currentScene);
-        this.hideLoading(false);
+        this.currentScene = this.sceneList[index];
+        this.sceneLayer.addChild(this.currentScene);
+        console.log(this.sceneLayer.numChildren)
+        this.hideLoading();
     }
 
     public showLoading(): void {

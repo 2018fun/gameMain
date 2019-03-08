@@ -1,21 +1,21 @@
 /**
- * NPC数据
+ * 游戏事件
  */
 
-class NpcData {
+class GameEventData {
     constructor(data) {
         this._name = data.name;
-        this._race = data.race;
+        this._index = data._index;
     }
 
     private _name: string;
-    private _race: number;
+    private _index: number;
 
     get name() {
         return this._name;
     }
 
-    get race() {
-        return this._race;
+    get index() {
+        return this._index;
     }
 }

@@ -1,4 +1,7 @@
-class HeroScene extends egret.DisplayObjectContainer {
+/**
+ * 
+ */
+class CharScene extends egret.DisplayObjectContainer {
     constructor() {
         super();
         this.initView();

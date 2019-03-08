@@ -2,20 +2,23 @@
  * 游戏场景
  */
 class GameScene extends egret.DisplayObjectContainer implements IScene {
+    private _index: number;
+
     constructor() {
         super();
+        this._index = 0;
         this.initView();
     }
 
     private initView() {
 
-         /**
-          * map
-          */
+        /**
+         * map
+         */
 
-          /**
-           * hero
-           */
+        /**
+         * hero
+         */
 
         /**
          * magic
@@ -25,6 +28,10 @@ class GameScene extends egret.DisplayObjectContainer implements IScene {
 
     private updateView() {
 
+    }
+
+    get index(): number {
+        return 1;
     }
 
     _start(): void {

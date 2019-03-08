@@ -11,6 +11,7 @@ class LoadingUI extends egret.Sprite {
 
     private loadingBoy: egret.MovieClip;
     private loadingWord: egret.MovieClip;
+    private loadingTip: egret.TextField;
 
     private async initView() {
         this.loadGUI();
@@ -66,22 +67,26 @@ class LoadingUI extends egret.Sprite {
     }
 
     private networkNotConnect() {
-        let text = new egret.TextField();
-        text.x = 100;
-        text.y = 614;
-        text.textColor = 0x000000;
-        text.text = "您当前网络状况很差，请联网再试";
-        this.addChild(text);
+        this.loadingTip = new egret.TextField();
+        this.loadingTip.x = 100;
+        this.loadingTip.y = 614;
+        this.loadingTip.textColor = 0x000000;
+        this.loadingTip.text = "您当前网络状况很差，请联网再试";
+        this.addChild(this.loadingTip);
     }
+
 
     public onShow() {
         this.loadingBoy.play(-1)
         this.loadingWord.play(-1);
+        this.loadingTip.visible = true;
     }
+
 
     public onHide() {
         this.loadingBoy.stop()
         this.loadingWord.stop();
+        this.loadingTip.visible = false;
     }
 
     public onProgress(current: number, total: number): void {
