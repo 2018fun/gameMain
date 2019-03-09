@@ -1,12 +1,12 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var CharDataMaster = (function () {
-    function CharDataMaster() {
+var AreaDataMaster = (function () {
+    function AreaDataMaster() {
     }
-    CharDataMaster.prototype.getLimit = function () {
+    AreaDataMaster.prototype.getLimit = function () {
         return 0;
     };
-    return CharDataMaster;
+    return AreaDataMaster;
 }());
-__reflect(CharDataMaster.prototype, "CharDataMaster", ["IMaster"]);
+__reflect(AreaDataMaster.prototype, "AreaDataMaster", ["IMaster"]);

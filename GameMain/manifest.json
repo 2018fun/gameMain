@@ -6,7 +6,8 @@
 		"libs/modules/tween/tween.js",
 		"libs/modules/assetsmanager/assetsmanager.js",
 		"libs/modules/promise/promise.js",
-		"libs/fairygui/fairygui.js"
+		"libs/fairygui/fairygui.js",
+		"libs/tiled/tiled.js"
 	],
 	"game": [
 		"bin-debug/manager/StatusManager.js",
@@ -21,6 +22,7 @@
 		"bin-debug/enum/AchivementEnum.js",
 		"bin-debug/enum/AreaEnum.js",
 		"bin-debug/enum/BuildingEnum.js",
+		"bin-debug/enum/EquipEnum.js",
 		"bin-debug/enum/MagicEnum.js",
 		"bin-debug/enum/MonsterEnum.js",
 		"bin-debug/enum/ProfessionEnum.js",
@@ -32,6 +34,8 @@
 		"bin-debug/manager/SceneManager.js",
 		"bin-debug/manager/SoundManager.js",
 		"bin-debug/Main.js",
+		"bin-debug/model/AchievementData.js",
+		"bin-debug/model/AchievementDataMaster.js",
 		"bin-debug/model/AreaData.js",
 		"bin-debug/model/AreaDataMaster.js",
 		"bin-debug/model/CharData.js",

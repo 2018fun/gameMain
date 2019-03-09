@@ -4,7 +4,11 @@
 
 module BuildingEnum {
     var auto = 0;
-    export const SCHOOL = auto++;
+    /**
+     * 市政厅
+     * 用于建造城市，购买所用
+     */
+    export const HALL = auto++;
     export const MARKET = auto++;
     export const BAR = auto++;
     export const MAGIC = auto++;

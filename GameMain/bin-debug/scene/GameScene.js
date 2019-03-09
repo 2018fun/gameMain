@@ -20,6 +20,12 @@ var GameScene = (function (_super) {
     }
     GameScene.prototype.initView = function () {
         /**
+         * map
+         */
+        /**
+         * hero
+         */
+        /**
          * magic
          */
     };

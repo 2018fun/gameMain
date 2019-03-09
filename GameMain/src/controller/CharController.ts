@@ -2,6 +2,8 @@ class CharController {
 
     static instance: CharController = null;
 
+    private chars:Array<CharData>;
+
     constructor() {
         this.init();
     }
@@ -15,5 +17,9 @@ class CharController {
             this.instance = new CharController();
         }
         return this.instance;
+    }
+
+    public  getChars(): Array<CharData> {
+        return this.chars
     }
 }

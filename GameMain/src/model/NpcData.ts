@@ -10,12 +10,17 @@ class NpcData {
 
     private _name: string;
     private _race: number;
+    private _profession: number;
 
-    get name() {
+    get name(): string {
         return this._name;
     }
 
-    get race() {
+    get race(): number {
         return this._race;
+    }
+
+    get profession(): number {
+        return this._profession;
     }
 }
