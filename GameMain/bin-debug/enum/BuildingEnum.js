@@ -9,9 +9,19 @@ var BuildingEnum;
      * 用于建造城市，购买所用
      */
     BuildingEnum.HALL = auto++;
+    /**
+     * 交易
+     */
     BuildingEnum.MARKET = auto++;
+    /**
+     * 酒馆
+     * NPC交流最主要部分
+     */
     BuildingEnum.BAR = auto++;
-    BuildingEnum.MAGIC = auto++;
+    /**
+     *
+     */
+    BuildingEnum.LIBRARY = auto++;
     BuildingEnum.WAR = auto++;
     BuildingEnum.DA = auto++;
     BuildingEnum.MARKT = auto++;

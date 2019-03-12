@@ -1,4 +1,8 @@
+/**
+ * 战场携带的物品
+ */
 module ToolEnum {
+    
     let auto = 0;
     /**
      * 回程卷轴
@@ -8,7 +12,7 @@ module ToolEnum {
     /**
      * 血瓶
      */
-
+    export const HEALTH_POTS = auto++
     /**
      * 魔法
      */
@@ -16,4 +20,10 @@ module ToolEnum {
     /**
      * 钥匙 
      */  
+    export const KEY = auto++;
+     /**
+      * PAPERS
+      */
+    //  export const PAPER = auto++;
+     export const BOOK = auto++;
 }

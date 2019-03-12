@@ -11,6 +11,13 @@ class AreaData {
 
     constructor(data) {
         this._name = data.name;
+        this._level = data.level;
+        this._monster = [];
+        let monsterData;
+        for (var i = 0; i < data.monsters.length; i++) {
+            monsterData = DataController.getData()
+            this._monster.push()
+        }
     }
 
 

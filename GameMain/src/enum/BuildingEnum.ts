@@ -9,9 +9,19 @@ module BuildingEnum {
      * 用于建造城市，购买所用
      */
     export const HALL = auto++;
+    /**
+     * 交易
+     */
     export const MARKET = auto++;
+    /**
+     * 酒馆
+     * NPC交流最主要部分
+     */
     export const BAR = auto++;
-    export const MAGIC = auto++;
+    /**
+     * 
+     */
+    export const LIBRARY = auto++;
     export const WAR = auto++;
     export const DA = auto++;
     export const MARKT = auto++;

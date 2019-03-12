@@ -24,10 +24,6 @@
     {
       "name": "fairygui",
       "path": "./libs/fairygui"
-    },
-		{
-			"name": "tiled",
-			"path": "./libs/tiled"
-		}
+    }
   ]
 }

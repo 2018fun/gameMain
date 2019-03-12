@@ -1,0 +1,45 @@
+{
+    "groups": [
+        {
+            "keys": "building_json,achievement_json,area_json,equip_json,game_event_json,monster_json,npc_json",
+            "name": "game_config"
+        }
+    ],
+    "resources": [
+        {
+            "url": "config/building.json",
+            "type": "json",
+            "name": "building_json"
+        },
+        {
+            "url": "config/achievement.json",
+            "type": "json",
+            "name": "achievement_json"
+        },
+        {
+            "url": "config/area.json",
+            "type": "json",
+            "name": "area_json"
+        },
+        {
+            "url": "config/equip.json",
+            "type": "json",
+            "name": "equip_json"
+        },
+        {
+            "url": "config/game_event.json",
+            "type": "json",
+            "name": "game_event_json"
+        },
+        {
+            "url": "config/monster.json",
+            "type": "json",
+            "name": "monster_json"
+        },
+        {
+            "url": "config/npc.json",
+            "type": "json",
+            "name": "npc_json"
+        }
+    ]
+}

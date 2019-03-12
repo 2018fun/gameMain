@@ -66,15 +66,30 @@ class Main extends egret.DisplayObjectContainer {
 
     private async runGame() {
 
-        console.log(BuildingEnum.SCHOOL);
         console.log(BuildingEnum.MARKET);
         console.log(BuildingEnum.WAR);
         console.log(BuildingEnum.BAR);
         console.log(BuildingEnum.DA);
+        await RES.loadConfig("resource/loading.res.json", "resource/");
+        await RES.loadGroup("loading_ui", 0);
 
         this.sceneManager = SceneManager.getInstance();
-        this.sceneManager.init(this.stage);
-        this.sceneManager.showLoading();
+        await this.sceneManager.init(this.stage);
+        await this.sceneManager.showLoading();
+
+        GameController.getInstance();
+
+        this.sceneManager.toScene(SceneEnum.TITLE_SCENE);
+
+        await RES.loadConfig("resource/default.res.json", "resource/");
+        await RES.loadGroup("preload");
+
+        // let texture = await RES.getRes("button_png")
+        // let button = new BitmapButton(texture);
+        // this.addChild(button);
+        // button.x = 200;
+        // button.y = 400;
+        this.sceneManager.hideLoading();
 
         // await platform.login();
         // const userInfo = await platform.getUserInfo();

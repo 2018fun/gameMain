@@ -6,13 +6,10 @@ class GameController {
         this.init();
     }
 
-    private areaDataMaster: AreaDataMaster;
 
 
     init() {
 
-        this.loadConfig();
-        this.loadSave();
         // this.areaDataMaster = new AreaDataMaster();
     }
 
@@ -23,17 +20,38 @@ class GameController {
         return this.instance;
     }
 
-    /**
-     * cdn 加载
-     */
-    private async loadConfig() {
-        await RES.loadConfig("resource/config.res.json", "resource/");
-    }
-
-    /**
+     /**
      * 
+     * 地图长度 10 个connection
+     * 每个road 5-10的长度
      */
-    private async loadSave() {
-        LocalSaveData.getInstance();
+
+    public generateMap() {
+        let mapData = {
+            connections: [],
+            roads: []
+        };
+        for (var i = 0; i < 10; i++) {
+            // 生成 connection
+            let connection = new Connection();
+            mapData.connections.push()
+            if (i === 10) {
+                break
+            }
+            // 生成road
+            if (i < 5) {
+                Util.xGetRandom(4, 5)
+            } else if (i < 7) {
+                Util.xGetRandom(5, 7)
+            } else if (i < 8) {
+                Util.xGetRandom(7, 8)
+            } else if (i < 10) {
+                Util.xGetRandom(8, 10)
+            }
+
+
+        }
+        return mapData;
+
     }
 }

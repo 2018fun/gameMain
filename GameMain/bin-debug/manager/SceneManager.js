@@ -1,52 +1,29 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var SceneManager = (function () {
     function SceneManager() {
-        this.gameLayer = new egret.DisplayObjectContainer();
+        /**
+         * 最上层
+         */
         this.loadingLayer = new egret.DisplayObjectContainer();
-        this.uiLayer = new egret.DisplayObjectContainer();
-        this.popLayer = new egret.DisplayObjectContainer();
+        /**
+         * 漂浮
+         */
         this.tipLayer = new egret.DisplayObjectContainer();
+        this.guideLayer = new egret.DisplayObjectContainer();
+        this.maskLayer = new egret.DisplayObjectContainer();
+        /**
+         * 弹窗层
+         */
+        this.popLayer = new egret.DisplayObjectContainer();
+        this.sceneLayer = new egret.DisplayObjectContainer();
         this.gameScene = null;
         this.titleScene = null;
-        this.dataScene = null;
-        this.rankScene = null;
+        this.charScene = null;
+        this.cityScene = null;
+        this.itemScene = null;
+        this.sceneList = [this.titleScene, this.gameScene, this.charScene, this.cityScene, this.itemScene];
         this.isPopUp = false;
         this.currentScene = null;
     }
@@ -54,8 +31,8 @@ var SceneManager = (function () {
         this.egretStage = egretStage;
         this.loading = new LoadingUI();
         // this.loading.y = -Util.y_fix() + 150;
-        this.initLayer(this.gameLayer);
-        this.initLayer(this.uiLayer);
+        // this.initLayer(this.gameLayer);
+        this.initLayer(this.sceneLayer);
         this.egretStage.addChild(this.popLayer);
         this.egretStage.addChild(this.tipLayer);
         this.egretStage.addChild(this.loadingLayer);
@@ -68,25 +45,26 @@ var SceneManager = (function () {
             // this.gameLayer.mask = this.gameLayerMask;
         }
     };
-    SceneManager.prototype.setSheet = function () {
-        this.popSheet = RES.getRes("pops_sheet");
-    };
     SceneManager.getInstance = function () {
         if (this.instance === null) {
             this.instance = new SceneManager();
         }
         return this.instance;
     };
+    /**
+     * 初始化层级 调整适配
+     * @param layer
+     */
     SceneManager.prototype.initLayer = function (layer) {
         layer.x = (Util.curWidth() - Util.displayWidth()) / 2;
         layer.y = (Util.curHeight() - Util.displayHeight()) / 2;
         this.egretStage.addChild(layer);
     };
-    SceneManager.prototype.getGameLayer = function () {
-        return this.gameLayer;
-    };
-    SceneManager.prototype.getUILayer = function () {
-        return this.uiLayer;
+    // public getGameLayer(): egret.DisplayObjectContainer {
+    //     return this.gameLayer;
+    // }
+    SceneManager.prototype.getSceneLayer = function () {
+        return this.sceneLayer;
     };
     SceneManager.prototype.getLoadingLayer = function () {
         return this.loadingLayer;
@@ -106,128 +84,29 @@ var SceneManager = (function () {
     // public getCurrentStage(): IFKaihiStage {
     //     return this.currentStage;
     // }
-    SceneManager.prototype.toRankScene = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.showLoading();
-                        return [4 /*yield*/, RES.loadGroup("data_scene")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("game_scene")];
-                    case 2:
-                        _a.sent();
-                        if (this.currentScene !== null) {
-                            if (this.currentScene.parent === this.gameLayer) {
-                                this.gameLayer.removeChild(this.currentScene);
-                            }
-                            if (this.currentScene !== this.rankScene) {
-                                this.uiLayer.removeChildren();
-                            }
-                            // this.gameScene = null;
-                            // this.dataScene = null;
-                            this.currentScene = null;
-                        }
-                        if (this.rankScene === null) {
-                            // this.rankScene = new RankScene(this.egretStage)
-                        }
-                        this.currentScene = this.rankScene;
-                        this.gameLayer.addChild(this.currentScene);
-                        this.hideLoading(false);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    SceneManager.prototype.toTitleScene = function () {
+    SceneManager.prototype.toScene = function (index) {
+        if (index < 0 || index >= this.sceneList.length) {
+            console.log("scene error");
+            return;
+        }
         this.showLoading();
         if (this.currentScene !== null) {
-            // if (this.currentScene.parent === this.gameLayer) {
-            //     this.gameLayer.removeChild(this.currentScene);
-            // }
-            this.gameLayer.removeChildren();
-            if (this.currentScene !== this.titleScene) {
-                this.uiLayer.removeChildren();
+            if (this.currentScene.index !== index) {
+                this.sceneLayer.removeChildren();
+                this.currentScene = null;
             }
-            // this.gameScene = null;
-            // this.dataScene = null;
         }
-        if (this.titleScene === null) {
-            // this.titleScene = new TitleScene(this.egretStage)
+        if (this.sceneList[index] === null) {
+            switch (index) {
+                case 0:
+                    this.sceneList[index] = new TitleScene();
+                    break;
+            }
         }
-        this.currentScene = this.titleScene;
-        this.gameLayer.addChild(this.currentScene);
-        this.hideLoading(false);
-    };
-    SceneManager.prototype.toGameScene = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.showLoading();
-                        return [4 /*yield*/, RES.loadGroup("game_scene")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("tip")];
-                    case 2:
-                        _a.sent();
-                        if (this.currentScene !== null) {
-                            // if (this.currentScene.parent === this.gameLayer) {
-                            //     this.gameLayer.removeChild(this.currentScene);
-                            // }
-                            if (this.currentScene !== this.gameScene) {
-                                this.gameLayer.removeChildren();
-                                this.uiLayer.removeChildren();
-                            }
-                            // this.titleScene = null;
-                            // this.dataScene = null;
-                        }
-                        // this.gameScene = await new GameScene(this.egretStage);
-                        this.currentScene = this.gameScene;
-                        this.currentScene.setGameStage();
-                        this.gameLayer.addChild(this.currentScene);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    SceneManager.prototype.toDataScene = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.showLoading();
-                        return [4 /*yield*/, RES.loadGroup("data_scene")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("game_scene")];
-                    case 2:
-                        _a.sent();
-                        if (this.currentScene !== null) {
-                            // if (this.currentScene.parent === this.gameLayer) {
-                            //     this.gameLayer.removeChild(this.currentScene);
-                            // }
-                            this.gameLayer.removeChildren();
-                            if (this.currentScene !== this.dataScene) {
-                                this.uiLayer.removeChildren();
-                            }
-                            // this.gameScene = null;
-                            // this.titleScene = null;
-                            this.currentScene = null;
-                        }
-                        if (this.dataScene === null) {
-                            // this.dataScene = new DataScene(this.egretStage);
-                        }
-                        this.currentScene = null;
-                        // this.dataScene.setGameStage();
-                        this.currentScene = this.dataScene;
-                        this.gameLayer.addChild(this.currentScene);
-                        this.hideLoading(false);
-                        return [2 /*return*/];
-                }
-            });
-        });
+        this.currentScene = this.sceneList[index];
+        this.sceneLayer.addChild(this.currentScene);
+        console.log(this.sceneLayer.numChildren);
+        this.hideLoading();
     };
     SceneManager.prototype.showLoading = function () {
         // if (this.loading === null) {

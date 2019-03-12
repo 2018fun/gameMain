@@ -10,7 +10,6 @@ var LocalSaveData = (function () {
         if (LocalSaveData.instance !== null) {
             throw new Error("single instance error");
         }
-        this.cardConfig = Config.getInstance().card_tip;
         var userSave = egret.localStorage.getItem("userSave");
         if (userSave === null || userSave === undefined || userSave === "") {
             this.cardSave = [null];
@@ -20,7 +19,7 @@ var LocalSaveData = (function () {
             this.stageSave = [null, 0];
             // this.cardSave = [null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             this.saveData = {
-                "stageSave": this.stageSave,
+                "charSave": this.stageSave,
                 "cardSave": this.cardSave,
                 "guide": "0"
             };
@@ -82,18 +81,16 @@ var LocalSaveData = (function () {
                 this.stageSave.push(0);
             }
             var newStage = this.getStageOpen();
-            for (var i = this.cardSave.length; i < this.cardConfig.length; i++) {
-                if (this.cardConfig[i]['stage'] > newStage) {
-                    break;
-                }
-                else if (this.cardConfig[i]['stage'] === newStage) {
-                    this.cardSave.push(0);
-                }
-                else {
-                    // 补齐之前关卡结束遗漏的0
-                    this.cardSave.push(0);
-                }
-            }
+            // for (let i = this.cardSave.length; i < this.cardConfig.length; i++) {
+            // if (this.cardConfig[i]['stage'] > newStage) {
+            //     break;
+            // } else if (this.cardConfig[i]['stage'] === newStage) {
+            //     this.cardSave.push(0);
+            // } else {
+            //     // 补齐之前关卡结束遗漏的0
+            //     this.cardSave.push(0);
+            // }
+            // }
             this.saveUserData();
             return true;
         }

@@ -3,7 +3,17 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 };
 var NpcController = (function () {
     function NpcController() {
+        this.init();
     }
+    NpcController.prototype.init = function () {
+    };
+    NpcController.getInstance = function () {
+        if (this.instance === null) {
+            this.instance = new NpcController();
+        }
+        return this.instance;
+    };
+    NpcController.instance = null;
     return NpcController;
 }());
 __reflect(NpcController.prototype, "NpcController");

@@ -1,23 +1,35 @@
 {
-	"groups":[
-	{
-		"keys":"bg_jpg,egret_icon_png,description_json",
-		"name":"preload"
-	}],
-	"resources":[
-	{
-		"name":"bg_jpg",
-		"type":"image",
-		"url":"assets/bg.jpg"
-	},
-	{
-		"name":"egret_icon_png",
-		"type":"image",
-		"url":"assets/egret_icon.png"
-	},
-	{
-		"name":"description_json",
-		"type":"json",
-		"url":"config/description.json"
-	}]
+	"groups": [
+		{
+			"keys": "basic_atlas0,basic_mejr81,basic_mejr82,basic,button_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "button_png",
+			"type": "image",
+			"url": "assets/okbtn.png"
+		},
+		{
+			"url": "assets/basic_atlas0.png",
+			"type": "image",
+			"name": "basic_atlas0"
+		},
+		{
+			"url": "assets/basic_mejr81.mp3",
+			"type": "sound",
+			"name": "basic_mejr81"
+		},
+		{
+			"url": "assets/basic_mejr82.mp3",
+			"type": "sound",
+			"name": "basic_mejr82"
+		},
+		{
+			"url": "assets/basic.fui",
+			"type": "bin",
+			"name": "basic"
+		}
+	]
 }
