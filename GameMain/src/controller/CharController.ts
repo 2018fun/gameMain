@@ -2,7 +2,9 @@ class CharController {
 
     static instance: CharController = null;
 
-    private chars:Array<CharData>;
+    private chars: Array<CharData>;
+
+    private currentChar: CharData;
 
     constructor() {
         this.init();
@@ -19,7 +21,15 @@ class CharController {
         return this.instance;
     }
 
-    public  getChars(): Array<CharData> {
+    public getChars(): Array<CharData> {
         return this.chars
+    }
+
+    public changeChar(id) {
+        this.currentChar = this.chars[id];
+    }
+
+    public charLevelUp() {
+        this.currentChar.setLevelUp();
     }
 }

@@ -3,7 +3,7 @@ class AreaDataMaster implements IMaster {
     private limit: number = 0;
     private datas: Array<AreaData>;
 
-    constructor(datas: Array<AreaData>) {
+    constructor(datas: Array<Array<any>>) {
         this.limit = datas.length;
         this.datas = new Array<AreaData>();
         for (let i: number = 0; i < this.limit; i++) {

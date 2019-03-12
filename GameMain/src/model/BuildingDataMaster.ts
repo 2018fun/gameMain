@@ -3,7 +3,7 @@ class BuildingDataMaster implements IMaster {
     private limit: number = 0;
     private datas: Array<BuildingData>;
 
-    constructor(datas: Array<BuildingData>) {
+    constructor(datas: Array<Array<any>>) {
         this.limit = datas.length;
         this.datas = new Array<BuildingData>();
         for (let i: number = 0; i < this.limit; i++) {

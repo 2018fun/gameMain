@@ -1,5 +1,5 @@
 /**
- * 
+ * 建筑枚举
  */
 
 module BuildingEnum {

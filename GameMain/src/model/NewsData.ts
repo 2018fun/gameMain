@@ -2,7 +2,7 @@
  * 游戏事件
  */
 
-class GameEventData {
+class NewsData {
     constructor(data) {
         this._name = data.name;
         this._index = data._index;

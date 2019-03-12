@@ -86,4 +86,29 @@ module Util {
 
         image.filters = [colorFilter];
     }
+
+    export function abs2pt(val1: number, val2: number): number {
+        var abs: number;
+        if (val1 < val2) {
+            abs = val2 - val1;
+        } else {
+            abs = val1 - val2;
+        }
+        abs = Math.abs(abs);
+        return abs;
+    }
+
+    export function getJSONDataTitle(json): Array<string> {
+        return json.titles;
+    }
+
+    export function getJSON2Array(json): Array<any> {
+        for (var i = 0; i < json.datas.length; i++) {
+
+        }
+
+
+        return
+    }
+
 }

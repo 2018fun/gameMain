@@ -13,7 +13,13 @@ class CityScene extends egret.DisplayObjectContainer {
 
 
     private initView() {
-        
+        this.userBuildings = SaveDataController.getInstance().getUserBuildings();
+    }
+
+    private updateView() {
+        for () {
+
+        }
     }
 
 }

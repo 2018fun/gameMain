@@ -91,6 +91,23 @@ class Main extends egret.DisplayObjectContainer {
         // button.y = 400;
         this.sceneManager.hideLoading();
 
+        var texture = new egret.Texture();
+
+        //创建 Bitmap
+
+        await RES.loadConfig("resource/default.res.json", "resource/");
+        await RES.loadGroup("preload");
+
+
+        //创建 ScrollView
+        var scrollView: egret.ScrollView = new egret.ScrollView();
+        //设置滚动内容
+        scrollView.setContent(this);
+        //设置滚动区域宽高
+        scrollView.width = 100;
+        scrollView.height = 100;
+        this.addChild(scrollView);
+
         // await platform.login();
         // const userInfo = await platform.getUserInfo();
         // console.log(userInfo);

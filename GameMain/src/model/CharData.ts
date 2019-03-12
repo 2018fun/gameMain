@@ -12,6 +12,11 @@ class CharData {
 
     constructor(data) {
         this._name = data.name;
+        for (var i = 0; i < this._equip.length; i++) {
+            // if (this._equip[i].) {
+
+            // }
+        }
     }
 
     get index() {
@@ -26,6 +31,9 @@ class CharData {
         return this._name;
     }
 
+    public setLevelUp() {
+        this._level += 1;
+    }
 
 
 }

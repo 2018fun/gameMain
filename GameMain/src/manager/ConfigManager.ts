@@ -1,8 +1,9 @@
-class ConfigDataController {
+class ConfigManager {
 
-    static instance: ConfigDataController = null;
+    static instance: ConfigManager = null;
 
     private areaMaster: AreaDataMaster;
+    private buildingMaster: BuildingDataMaster;
 
     constructor() {
         this.init();
@@ -16,30 +17,24 @@ class ConfigDataController {
         "game_event_json",
         "monster_json",
         "npc_json"
-       
-        
+
+
     ];
 
     private async  init() {
         await RES.loadConfig("resource/config.res.json", "resource/");
         await RES.loadGroup("game_config");
 
-        for (var i = 0; i < this.configList.length; i++) {
-            
-            for (var key in config_json) {
-                
-            }
-        }
-        let area_json = await RES.getRes(this.configList[i]);
-        for () {
+        let building_json = await RES.getRes("building_json");
+        let area_json = await RES.getRes("area_json");
 
-        }
-        this.areaMaster = new AreaDataMaster();
+        this.buildingMaster = new BuildingDataMaster(building_json.datas);
+        // this.areaMaster = new AreaDataMaster();
     }
 
-    public static getInstance(): ConfigDataController {
+    public static getInstance(): ConfigManager {
         if (this.instance === null) {
-            this.instance = new ConfigDataController();
+            this.instance = new ConfigManager();
         }
         return this.instance;
     }

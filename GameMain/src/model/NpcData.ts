@@ -4,23 +4,30 @@
 
 class NpcData {
     constructor(data) {
-        this._name = data.name;
-        this._race = data.race;
+        this._id = data[0];
+        this._name = data[1];
+        this._lv = data[2];
+        this._profession = data[3];
     }
 
+    private _id: number
     private _name: string;
-    private _race: number;
+    private _lv: number;
     private _profession: number;
 
-    get name(): string {
+    public getId(): number {
+        return this._id;
+    }
+
+    public getName(): string {
         return this._name;
     }
 
-    get race(): number {
-        return this._race;
+    public getLv(): number {
+        return this._lv;
     }
 
-    get profession(): number {
+    public getProfession(): number {
         return this._profession;
     }
 }
