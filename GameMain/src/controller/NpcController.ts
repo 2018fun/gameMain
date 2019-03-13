@@ -16,4 +16,20 @@ class NpcController {
         }
         return this.instance;
     }
+
+    /**
+     * 遇到npc
+     */
+    public meetNPC() {
+
+    }
+
+    /**
+     * Letter to npc
+     */
+    public letterToNPC() {
+
+    }
+
+    // public 
 }

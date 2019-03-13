@@ -11,7 +11,21 @@ class GameScene extends egret.DisplayObjectContainer implements IScene {
     }
 
     private initView() {
-        this.createMap()
+        this.createMap();
+        let connection = new Connection();
+        connection.x = Util.curWidth() / 2;
+        connection.y = Util.curHeight() * 5 / 8;
+        this.addChild(connection);
+
+        let road = new Road(5);
+        road.x = connection.center.x - 25;
+        road.y = connection.center.y - road.height - 50;
+        this.addChild(road);
+
+        let connection2 = new Connection();
+        connection2.x = connection.x;
+        connection2.y = road.y - connection.height / 2;
+        this.addChild(connection2);
         /**
          * map
          */
@@ -19,10 +33,27 @@ class GameScene extends egret.DisplayObjectContainer implements IScene {
         /**
          * hero
          */
+        let hero = new egret.Bitmap();
+        hero.texture = RES.getRes("button_png");
+        hero.x = connection.x;
+        hero.y = connection.center.y;
+        this.addChild(hero);
 
         /**
          * magic
          */
+
+        let magic: egret.Bitmap;
+        for (var i = 0; i < 4; i++) {
+
+            magic = new egret.Bitmap();
+            magic.texture = RES.getRes("button_png");
+            magic.x = 100 + 100 * i;
+            magic.y = Util.curHeight() * 6 / 8;
+            this.addChild(magic);
+        }
+
+        let bag: egret.Bitmap;
 
     }
 

@@ -77,12 +77,14 @@ class Main extends egret.DisplayObjectContainer {
         await this.sceneManager.init(this.stage);
         await this.sceneManager.showLoading();
 
-        GameController.getInstance();
-
-        this.sceneManager.toScene(SceneEnum.TITLE_SCENE);
-
         await RES.loadConfig("resource/default.res.json", "resource/");
         await RES.loadGroup("preload");
+
+        GameController.getInstance();
+
+        this.sceneManager.toScene(SceneEnum.GAME_SCENE);
+
+        
 
         // let texture = await RES.getRes("button_png")
         // let button = new BitmapButton(texture);
@@ -91,40 +93,11 @@ class Main extends egret.DisplayObjectContainer {
         // button.y = 400;
         this.sceneManager.hideLoading();
 
-        var texture = new egret.Texture();
-
-        //创建 Bitmap
-
-        await RES.loadConfig("resource/default.res.json", "resource/");
-        await RES.loadGroup("preload");
-
-
-        //创建 ScrollView
-        var scrollView: egret.ScrollView = new egret.ScrollView();
-        //设置滚动内容
-        scrollView.setContent(this);
-        //设置滚动区域宽高
-        scrollView.width = 100;
-        scrollView.height = 100;
-        this.addChild(scrollView);
 
         // await platform.login();
         // const userInfo = await platform.getUserInfo();
         // console.log(userInfo);
 
-    }
-
-    private async loadResource() {
-        try {
-            const loadingView = new LoadingUI();
-            this.stage.addChild(loadingView);
-            await RES.loadConfig("resource/default.res.json", "resource/");
-            await RES.loadGroup("preload", 0, loadingView);
-            this.stage.removeChild(loadingView);
-        }
-        catch (e) {
-            console.error(e);
-        }
     }
 
 }

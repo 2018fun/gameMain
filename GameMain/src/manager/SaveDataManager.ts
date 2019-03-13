@@ -10,9 +10,7 @@ class SaveDataManager {
         if (SaveDataManager.instance !== null) {
             throw new Error("single instance error");
         }
-        if (char) {
-
-        }
+       
         this.loadNewsSave();
         this.loadCharSave();
         this.loadCitySave();

@@ -7,19 +7,20 @@ class CityScene extends egret.DisplayObjectContainer {
         this.initView();
     }
 
+    private userBuildings;
     private buildingList;
     private detailPanel;
     // private 建筑实际内容面板
 
 
     private initView() {
-        this.userBuildings = SaveDataController.getInstance().getUserBuildings();
+        // this.userBuildings = SaveDataController.getInstance().getUserBuildings();
     }
 
     private updateView() {
-        for () {
+        // for () {
 
-        }
+        // }
     }
 
 }

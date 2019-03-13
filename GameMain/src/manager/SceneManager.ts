@@ -150,6 +150,10 @@ class SceneManager {
                 case 0:
                     this.sceneList[index] = new TitleScene();
                     break;
+
+                case SceneEnum.GAME_SCENE:
+                    this.sceneList[SceneEnum.GAME_SCENE] = new GameScene();
+                    break;
             }
         }
         this.currentScene = this.sceneList[index];

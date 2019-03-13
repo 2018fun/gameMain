@@ -1,3 +1,8 @@
+/**
+ * create by tishoy
+ * 2019.3.13
+ * 位图按钮
+ */
 class BitmapButton extends egret.Sprite {
 
     private texture: egret.Texture;

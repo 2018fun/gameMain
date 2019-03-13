@@ -9,4 +9,5 @@ module PaperTypeEnum {
     export const RECIPE = auto++;           //合成书
     export const TREASURE_MAP = auto++;     //宝藏地图
     export const TOWN_PORTAL = auto++;      //回程卷轴
+    export const LETTER = auto++;
 }
