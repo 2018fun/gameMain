@@ -9,7 +9,7 @@
 		"libs/fairygui/fairygui.js"
 	],
 	"game": [
-		"bin-debug/model/AreaData.js",
+		"bin-debug/model/AreaDataMaster.js",
 		"bin-debug/Config.js",
 		"bin-debug/Platform.js",
 		"bin-debug/Util.js",
@@ -47,8 +47,8 @@
 		"bin-debug/manager/StatusManager.js",
 		"bin-debug/model/AchievementData.js",
 		"bin-debug/model/AchievementDataMaster.js",
+		"bin-debug/model/AreaData.js",
 		"bin-debug/Main.js",
-		"bin-debug/model/AreaDataMaster.js",
 		"bin-debug/model/BuildingData.js",
 		"bin-debug/model/BuildingDataMaster.js",
 		"bin-debug/model/CharData.js",
@@ -83,8 +83,10 @@
 		"bin-debug/view/scene/uiComponent/BitmapButton.js",
 		"bin-debug/view/scene/uiComponent/CharView.js",
 		"bin-debug/view/scene/uiComponent/FlippedText.js",
+		"bin-debug/view/scene/uiComponent/HeroStatus.js",
 		"bin-debug/view/scene/uiComponent/MapView.js",
 		"bin-debug/view/scene/uiComponent/MonsterView.js",
-		"bin-debug/view/scene/uiComponent/Progress.js"
+		"bin-debug/view/scene/uiComponent/Progress.js",
+		"bin-debug/view/scene/uiComponent/ResourceStatus.js"
 	]
 }

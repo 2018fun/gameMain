@@ -1,4 +1,8 @@
-
+/**
+ * create by tishoy
+ * 2019.3.14
+ * 工具类
+ */
 module Util {
 
     //--------------------
@@ -109,6 +113,14 @@ module Util {
 
 
         return
+    }
+
+    export function toNumber(any) {
+        let num = Number(any)
+        if (isNaN(num)) {
+            return 0;
+        }
+        return num;
     }
 
 }

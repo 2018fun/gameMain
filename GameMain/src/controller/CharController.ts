@@ -11,7 +11,7 @@ class CharController {
     }
 
     init() {
-
+        // let charsData = 
     }
 
     public static getInstance(): CharController {
@@ -19,6 +19,10 @@ class CharController {
             this.instance = new CharController();
         }
         return this.instance;
+    }
+
+    public getCurrentChar() {
+        return this.currentChar;
     }
 
     public getChars(): Array<CharData> {

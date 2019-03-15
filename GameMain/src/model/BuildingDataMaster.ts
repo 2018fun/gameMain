@@ -4,7 +4,9 @@ class BuildingDataMaster implements IMaster {
     private datas: Array<BuildingData>;
 
     constructor(datas: Array<Array<any>>) {
+        console.log(datas);
         this.limit = datas.length;
+
         this.datas = new Array<BuildingData>();
         for (let i: number = 0; i < this.limit; i++) {
             this.datas[i] = new BuildingData(datas[i]);

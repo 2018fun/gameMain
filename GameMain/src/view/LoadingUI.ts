@@ -1,6 +1,7 @@
 /**
  * create by tishoy
  * 2018.8.12
+ * 载入界面
  */
 class LoadingUI extends egret.Sprite {
 

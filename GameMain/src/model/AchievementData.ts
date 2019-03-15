@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+
+class AchievementData {
+    constructor(data) {
+
+    }
+}

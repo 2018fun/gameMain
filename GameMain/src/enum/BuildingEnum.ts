@@ -17,7 +17,7 @@ module BuildingEnum {
      * 酒馆
      * NPC交流最主要部分
      */
-    export const BAR = auto++;
+    export const TAVERN = auto++;
     /**
      * 
      */

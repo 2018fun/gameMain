@@ -17,6 +17,10 @@ class CityController {
         return this.instance;
     }
 
+    public getBuildings() {
+        return BuildingDataMaster
+    }
+
     public levelUpBulding(id) {
         
     }

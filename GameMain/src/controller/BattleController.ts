@@ -16,4 +16,9 @@ class BattleController {
         }
         return this.instance;
     }
+
+    public fightVSMonster(monster) {
+        let userData = CharController.getInstance().getCurrentChar();
+        
+    }
 }

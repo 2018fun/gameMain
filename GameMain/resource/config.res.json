@@ -1,7 +1,7 @@
 {
     "groups": [
         {
-            "keys": "building_json,achievement_json,area_json,equip_json,game_event_json,monster_json,npc_json",
+            "keys": "building_json,achievement_json,area_json,equip_json,news_json,monster_json,npc_json",
             "name": "game_config"
         }
     ],
@@ -27,9 +27,9 @@
             "name": "equip_json"
         },
         {
-            "url": "config/game_event.json",
+            "url": "config/news.json",
             "type": "json",
-            "name": "game_event_json"
+            "name": "news_json"
         },
         {
             "url": "config/monster.json",
